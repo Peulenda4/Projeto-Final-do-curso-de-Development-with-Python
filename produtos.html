@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4 text-center">Produtos</h2>
+
+<div class="text-center mb-4">
+    <a href="/produtos/add" class="btn btn-primary">Adicionar Produto</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in produtos %}
+        <tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>
+                R$ {{ "{:,.2f}".format(p[2]).replace(",", "X").replace(".", ",").replace("X", ".") }}
+            </td>
+            <td>
+                <a href="/produtos/edit/{{ p[0] }}" class="btn btn-sm btn-warning">Editar</a>
+                <a href="/produtos/delete/{{ p[0] }}" class="btn btn-sm btn-danger">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

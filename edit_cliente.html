@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4 text-center">Editar Cliente</h2>
+
+<form action="/clientes/edit/{{ cliente[0] }}" method="POST">
+    <table class="table table-bordered w-50 mx-auto">
+        <tr>
+            <td><label for="nome" class="form-label">Nome</label></td>
+            <td><input type="text" name="nome" id="nome" class="form-control" value="{{ cliente[1] }}" required></td>
+        </tr>
+        <tr>
+            <td><label for="email" class="form-label">Email</label></td>
+            <td><input type="email" name="email" id="email" class="form-control" value="{{ cliente[2] }}" required></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-end">
+                <a href="/clientes" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}

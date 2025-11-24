@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4 text-center">Meu Carrinho</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço Unitário</th>
+            <th>Preço Total</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in itens %}
+        <tr>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[4] }}</td>
+            <td>R$ {{ "{:,.2f}".format(item[3]).replace(',', 'X').replace('.', ',').replace('X', '.') }}</td>
+            <td>R$ {{ "{:,.2f}".format(item[3]*item[4]).replace(',', 'X').replace('.', ',').replace('X', '.') }}</td>
+            <td>
+                <a href="/carrinho/delete/{{ item[0] }}" class="btn btn-danger btn-sm">Remover</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3 class="mt-5 mb-3 text-center">Adicionar Produto ao Carrinho</h3>
+
+<form method="POST" action="/carrinho/add">
+    <table class="table table-bordered w-50 mx-auto">
+        <tr>
+            <td>Cliente</td>
+            <td>
+                <select name="cliente" class="form-select" required>
+                    {% for c in clientes %}
+                        <option value="{{ c[0] }}">{{ c[1] }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Produto</td>
+            <td>
+                <select name="produto" class="form-select" required>
+                    {% for p in produtos %}
+                        <option value="{{ p[0] }}">{{ p[1] }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Quantidade</td>
+            <td><input type="number" name="quantidade" min="1" value="1" class="form-control" required></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-end">
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}

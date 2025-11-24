@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4 text-center">Editar Produto</h2>
+
+<form action="/produtos/edit/{{ produto[0] }}" method="POST">
+    <table class="table table-bordered w-50 mx-auto">
+        <tr>
+            <td><label for="nome" class="form-label">Nome do Produto</label></td>
+            <td><input type="text" name="nome" id="nome" class="form-control" value="{{ produto[1] }}" required></td>
+        </tr>
+        <tr>
+            <td><label for="preco" class="form-label">Preço</label></td>
+            <td>
+                <input type="text" name="preco" id="preco" class="form-control"
+                       value="{{ "%.2f"|format(produto[2]) }}"
+                       pattern="^\d+(\.\d{1,2})?$"
+                       title="Digite o valor com ponto decimal, ex: 1250.00"
+                       required>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-end">
+                <a href="/produtos" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}

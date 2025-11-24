@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="text-center">
+    <h2 class="mb-4">Bem-vindo(a), {{ nome_usuario }}!</h2>
+    <p class="mb-4">Use o menu acima para navegar pelo sistema ou clique nos links abaixo:</p>
+
+    <div class="d-flex justify-content-center gap-3">
+        <a href="/clientes" class="btn btn-primary">Gerenciar Clientes</a>
+        <a href="/produtos" class="btn btn-success">Gerenciar Produtos</a>
+        <a href="/carrinho" class="btn btn-warning">Ver Carrinho</a>
+    </div>
+</div>
+
+{% endblock %}
